@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function FunctionalCounter() {
     const [number, setNumber] = useState(0);
+
+    // Why should I avoid this?
+    //document.title = `You clicked ${number} times`;
+
+    useEffect(() => {
+        document.title = `You clicked ${number} times`;
+      }, [number]);
 
     return (
         <div>
