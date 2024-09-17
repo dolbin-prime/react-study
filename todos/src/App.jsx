@@ -1,20 +1,12 @@
 import React, {useState} from 'react';
 import TodoList from './TodoList';
 import TodoAdder from './TodoAdder';
+import Todo from './Todo';
 
 const initialTodos =[
-    {
-        id : 0,
-        text: 'Turn on the computer'
-    },
-    {
-        id : 1,
-        text: 'Open VS code'
-    },
-    {
-        id : 2,
-        text: 'Build a React app'
-    }
+    new Todo(0, 'Turn on the computer'),
+    new Todo(1, 'Open VS code'),
+    new Todo(2, 'Build a React app'),
 ];
 
 function TodoApp (){
