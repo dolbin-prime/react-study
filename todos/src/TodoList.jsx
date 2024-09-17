@@ -1,22 +1,8 @@
-import React, {useState} from "react";
+import React from "react";
 
-const initialTodos =[
-    {
-        id : 0,
-        text: 'Turn on the computer'
-    },
-    {
-        id : 1,
-        text: 'Open VS code'
-    },
-    {
-        id : 2,
-        text: 'Build a React app'
-    }
-];
 
-function TodoList(){
-    const [ todos ] = useState(initialTodos);
+function TodoList(props){
+    const {todos} = props;
 
     return (
         <ul>
