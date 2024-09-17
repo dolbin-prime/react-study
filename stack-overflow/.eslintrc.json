@@ -1,0 +1,15 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": false
+  },
+  "extends": [
+    "airbnb",
+    "prettier"
+  ],
+  "plugins": [
+    "react",
+    "react-hooks"
+  ]
+}

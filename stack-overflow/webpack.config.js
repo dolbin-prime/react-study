@@ -2,13 +2,13 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import path from "path";
 
-const __dirname = path.resolve();
+const dirname = path.resolve();
 
 export default  {
     mode : "development",
-    entry : "./src/index.js",
+    entry : "./src/index.jsx",
     output : {
-        path: path.resolve(__dirname, "dist"),
+        path: path.resolve(dirname, "dist"),
         filename: "[fullhash].js",
         publicPath: "/",
     },
