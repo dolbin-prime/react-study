@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 class ClassCounter extends React.Component {
   constructor(props) {
@@ -9,15 +9,15 @@ class ClassCounter extends React.Component {
     };
   }
 
-  increase = ()=>{
+  increase = () => {
     this.setState((state) => ({
-      number: state.number + 1
+      number: state.number + 1,
     }));
-  }
+  };
 
-  decrease () {
+  decrease() {
     this.setState((state) => ({
-      number: state.number - 1
+      number: state.number - 1,
     }));
   }
 
