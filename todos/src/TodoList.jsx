@@ -7,12 +7,17 @@ import TodoItem from './TodoItem';
  * @returns The todo list component.
  */
 function TodoList(props) {
-  const { todos, handleChange } = props;
+  const { todos, handleChange, handleDelete } = props;
 
   return (
-    <ul style={{ 'list-style-type': 'none' }}>
+    <ul style={{ listStyleType: 'none' }}>
       {todos.map((t) => (
-        <TodoItem key={t.id} todo={t} handleChange={handleChange} />
+        <TodoItem
+          key={t.id}
+          todo={t}
+          handleChange={handleChange}
+          handleDelete={handleDelete}
+        />
       ))}
     </ul>
   );

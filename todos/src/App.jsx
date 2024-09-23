@@ -36,15 +36,26 @@ function TodoApp() {
   );
 
   // JSX props should not use functions
-  // function handleChange(newTodo){
-  //     todos.map((todo)=>{
-  //         if (todo.id === newTodo.id) {
-  //             return newTodo;
-  //         }
+  // function handleChange(newTodo) {
+  //   setTodos(
+  //     todos.map((todo) => {
+  //       if (todo.id === newTodo.id) {
+  //         return newTodo;
+  //       }
 
-  //         return todo;
-  //     })
-  // };
+  //       return todo;
+  //     }),
+  //   );
+  // }
+
+  // Same is here
+  // function handleDelete(deletedTodo) {
+  //   setTodos(todos.filter((todo) => todo.id !== deletedTodo.id));
+  // }
+
+  const handleDelete = useCallback((deletedTodo) =>
+    setTodos(todos.filter((todo) => todo.id !== deletedTodo.id)),
+  );
 
   return (
     <div>
@@ -55,7 +66,11 @@ function TodoApp() {
         currentId={currentId}
         setCurrentId={setCurrentId}
       />
-      <TodoList todos={todos} handleChange={handleChange} />
+      <TodoList
+        todos={todos}
+        handleChange={handleChange}
+        handleDelete={handleDelete}
+      />
     </div>
   );
 }
