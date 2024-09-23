@@ -4,8 +4,8 @@
  * @param {*} text The displayed text of a todo.
  * @param {*} isDone Whether a todo is done.
  */
-export default function Todo(id, text, isDone){
-    this.id = id;
-    this.text = text;
-    this.isDone = isDone;
+export default function Todo(id, text, isDone) {
+  this.id = id;
+  this.text = text;
+  this.isDone = isDone;
 }
