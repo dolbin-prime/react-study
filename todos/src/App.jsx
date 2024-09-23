@@ -69,6 +69,10 @@ function TodoApp() {
         handleChange={handleChange}
         handleDelete={handleDelete}
       />
+      <p>
+        {todos.filter((todo) => todo.isDone).length} of {todos.length} todo(s)
+        completed!
+      </p>
     </div>
   );
 }
