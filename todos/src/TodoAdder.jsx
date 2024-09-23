@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Todo from './Todo';
 
 /**
  * The component for adding a new todo item to the todo list.
@@ -6,20 +7,17 @@ import React, { useState } from 'react';
  * @returns The adder component.
  */
 function TodoAdder(props) {
-  const { todos, setTodos, currentId, setCurrentId } = props;
+  const { handleAdd, currentId, setCurrentId } = props;
   const [textInput, setTextInput] = useState('');
 
   /**
-   * Add new item to the todo list.
+   * Add new item to the todo list when `Add` button clicked.
    */
-  function handleAdd() {
+  function handleAddClick() {
     if (textInput === '') return;
 
-    const newTodo = {
-      id: currentId,
-      text: textInput,
-    };
-    setTodos([...todos, newTodo]);
+    const newTodo = new Todo(currentId, textInput, false);
+    handleAdd(newTodo);
     setCurrentId(currentId + 1);
 
     setTextInput('');
@@ -37,7 +35,7 @@ function TodoAdder(props) {
    * Handle the key event to detect `Enter` key press in input for new name.
    */
   function handleKeyUp(event) {
-    if (event.key === 'Enter') handleAdd();
+    if (event.key === 'Enter') handleAddClick();
   }
 
   return (
@@ -49,7 +47,7 @@ function TodoAdder(props) {
         onInput={handleTextInput}
         onKeyUp={handleKeyUp}
       />
-      <button type="button" onClick={handleAdd}>
+      <button type="button" onClick={handleAddClick}>
         Add
       </button>
     </div>

@@ -1,7 +1,8 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useReducer } from 'react';
 import TodoList from './TodoList';
 import TodoAdder from './TodoAdder';
 import Todo from './Todo';
+import todoReducer from './todoReducer';
 
 /**
  * Initially added {@link Todo}s to the app.
@@ -17,52 +18,49 @@ const initialTodos = [
  * @returns The todo app component.
  */
 function TodoApp() {
-  const [todos, setTodos] = useState(initialTodos);
+  const [todos, dispatch] = useReducer(todoReducer, initialTodos);
   const [currentId, setCurrentId] = useState(initialTodos.length);
 
   /**
-   * Change an item of the {@link TodoList} to a new {@link Todo}
+   * Change an item of the {@link TodoList}.
    */
-  const handleChange = useCallback((newTodo) =>
-    setTodos(
-      todos.map((todo) => {
-        if (todo.id === newTodo.id) {
-          return newTodo;
-        }
-
-        return todo;
-      }),
-    ),
+  const handleChange = useCallback((changedTodo) =>
+    dispatch({
+      type: 'Change',
+      changedTodo,
+    }),
   );
 
   // JSX props should not use functions
-  // function handleChange(newTodo) {
-  //   setTodos(
-  //     todos.map((todo) => {
-  //       if (todo.id === newTodo.id) {
-  //         return newTodo;
-  //       }
-
-  //       return todo;
-  //     }),
-  //   );
+  // function handleChange(changedTodo) {
+  //   dispatch({
+  //     type: 'Change',
+  //     changedTodo,
+  //   });
   // }
 
-  // Same is here
-  // function handleDelete(deletedTodo) {
-  //   setTodos(todos.filter((todo) => todo.id !== deletedTodo.id));
-  // }
-
+  /**
+   * Delete an item of the {@link TodoList}.
+   */
   const handleDelete = useCallback((deletedTodo) =>
-    setTodos(todos.filter((todo) => todo.id !== deletedTodo.id)),
+    dispatch({
+      type: 'Delete',
+      deletedTodo,
+    }),
+  );
+
+  /**
+   * Add an item to the {@link TodoList}.
+   */
+  const handleAdd = useCallback((newTodo) =>
+    dispatch({ type: 'Add', newTodo }),
   );
 
   return (
     <div>
       <h1>Todo list</h1>
       <TodoAdder
-        todos={todos}
-        setTodos={setTodos}
+        handleAdd={handleAdd}
         currentId={currentId}
         setCurrentId={setCurrentId}
       />

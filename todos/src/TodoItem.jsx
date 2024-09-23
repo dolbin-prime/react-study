@@ -7,7 +7,7 @@ import Todo from './Todo';
  * @returns The list item component.
  */
 function TodoItem(props) {
-  const { todo, handleChange } = props;
+  const { todo, handleChange, handleDelete } = props;
   const [newName, setNewName] = useState(todo.text);
   const [isEditing, setIsEditing] = useState(false);
   const inputRef = useRef();
@@ -69,6 +69,9 @@ function TodoItem(props) {
         {todo.text}
         <button type="button" onClick={handleEdit}>
           Edit
+        </button>
+        <button type="button" onClick={() => handleDelete(todo)}>
+          Delete
         </button>
       </>
     );
